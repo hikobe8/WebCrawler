@@ -12,7 +12,7 @@ for i in range(50):
     html = urlopen(url).read().decode('utf-8')
     soup = BeautifulSoup(html, features='lxml')
     print(soup.find("h1").get_text(), '  url: ', his[-1])
-    sub_urls = soup.find_all('a', {"target": "_blank", "href": re.compile("/item/(%.{2})+$")})
+    sub_urls = soup.find_all('a', dict(target="_blank", href=re.compile('/item/(%.{2})+$')))
 
     if len(sub_urls) != 0:
         his.append(random.sample(sub_urls, 1)[0]['href'])
